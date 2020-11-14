@@ -1,5 +1,30 @@
 # book-service project
 
+Build RESTful API with Quarkus and JPA 
+
+## Creating the Maven project
+```bash
+mvn io.quarkus:quarkus-maven-plugin:1.9.2.Final:create \
+    -DprojectGroupId=com.rich \
+    -DprojectArtifactId=book-service \
+    -DclassName="com.rich.quarkus.BookResource" \
+    -Dpath="/books" \
+    -Dextensions="resteasy-jackson"
+```
+
+## Displays a list of goals for Quarkus Plugin 
+```bash
+mvn help:describe -Dplugin=io.quarkus:quarkus-maven-plugin \
+    -Ddetail=true
+```
+
+### Book api endpoints
+- /books
+- /openapi
+- /swagger-ui
+
+--- 
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
