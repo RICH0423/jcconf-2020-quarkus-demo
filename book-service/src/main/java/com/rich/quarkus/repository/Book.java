@@ -1,11 +1,18 @@
 package com.rich.quarkus.repository;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Date;
 
 /**
  * @author rich
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Book {
 
@@ -21,54 +28,9 @@ public class Book {
 
     private Date createAt;
 
-    public Book() {
-    }
-
     public Book(String name, String isbn) {
         this.name = name;
         this.isbn = isbn;
         this.createAt = new Date();
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", createAt=" + createAt +
-                '}';
     }
 }
