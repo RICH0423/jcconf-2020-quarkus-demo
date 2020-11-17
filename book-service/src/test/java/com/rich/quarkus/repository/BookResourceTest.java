@@ -1,4 +1,4 @@
-package com.rich.quarkus;
+package com.rich.quarkus.repository;
 
 import com.rich.quarkus.repository.Book;
 import io.quarkus.test.junit.QuarkusTest;

@@ -1,5 +1,6 @@
 package com.rich.quarkus;
 
+import com.rich.quarkus.repository.BookResourceTest;
 import io.quarkus.test.junit.NativeImageTest;
 
 @NativeImageTest
