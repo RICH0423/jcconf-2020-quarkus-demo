@@ -1,30 +1,39 @@
 # user-service project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project is to show how to use quarkus to integrate with Kubernetes.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+### Prerequisites
+- JDK 11+
+- pache Maven 3.6.2+
+- Kubernetes cluster
+- MongoDB 4+
 
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
+### Add K8S extension
+```bash
+./mvnw quarkus:add-extension -Dextensions="container-image-jib,quarkus-kubernetes"
 ```
-./mvnw quarkus:dev
+
+### Deploying Quarkus app to Kubernetes
+
+- build a container image and generate K8S manifests
+```bash
+./mvnw clean package
 ```
 
-## Packaging and running the application
+- show K8S manifests
+```bash
+cat target/kubernetes/kubernetes.yml
+```
 
-The application can be packaged using `./mvnw package`.
-It produces the `user-service-1.0-SNAPSHOT-runner.jar` file in the `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+- to create and push your container image using jib
+```bash
+./mvnw clean package -Dquarkus.container-image.push=true
+```
 
-The application is now runnable using `java -jar target/user-service-1.0-SNAPSHOT-runner.jar`.
+- Deploy your application to your Kubernetes cluster
+```bash
+kubectl apply -f target/kubernetes/kubernetes.json
+```
 
-## Creating a native executable
+If you want to learn more about deploying the application to the K8S platform, please visit https://quarkus.io/guides/deploying-to-kubernetes.
 
-You can create a native executable using: `./mvnw package -Pnative`.
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
-
-You can then execute your native executable with: `./target/user-service-1.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
