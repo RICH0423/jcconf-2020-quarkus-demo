@@ -23,7 +23,7 @@ public class UserResourceTest {
     UserRepository userRepository;
 
     @Test
-    public void whenGetAllUsers_thenBodyShouldNotBeEmpty() {
+    public void whenGetAllUsers_thenResponseShouldNotBeEmpty() {
         when(userRepository.getAll()).thenReturn(
                 List.of(new User("rich", 30)));
 
