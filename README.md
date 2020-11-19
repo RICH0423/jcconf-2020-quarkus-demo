@@ -8,7 +8,7 @@ Quarkus demo apps for JCConf 2020.
 - build container image
 - remote debug in a container
 
-## [Demo2: User Service]((./user-service))
+## [Demo2: User Service](./user-service)
 - deploy app on K8S
 - read env variables from K8S Secret
 - liveness & readiness probe
