@@ -16,8 +16,9 @@ import java.util.List;
 @ApplicationScoped
 public class BookRepository {
 
-    private static Logger logger = LoggerFactory.getLogger(BookRepository.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(BookRepository.class);
 
+    private static final String FIND_ALL_BOOKS = "SELECT b FROM Book b";
     private static final String FIND_BY_NAME_HQL = "FROM Book b WHERE b.name = ?1";
 
     @Inject
@@ -36,14 +37,21 @@ public class BookRepository {
         em.remove(book);
     }
 
+    @Transactional
+    public Book updateBook(long id, String name) {
+        Book book = find(id);
+        book.setName(name);
+        return book;
+    }
+
     public List<Book> findAll() {
-        return em.createQuery("SELECT b FROM Book b", Book.class).getResultList();
+        return em.createQuery(FIND_ALL_BOOKS, Book.class).getResultList();
     }
 
     public Book find(long id) {
         Book book = em.find(Book.class, id);
         if(book == null) {
-            logger.warn("Book not found, id: {}", id);
+            LOGGER.warn("Book not found, id: {}", id);
             throw new EntityNotFoundException("Book not found, id: " + id);
         }
 
